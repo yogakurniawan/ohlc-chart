@@ -1,4 +1,4 @@
-# React App
+# OHLC Chart made with React
 ## Tools
 
 * React 16.8
