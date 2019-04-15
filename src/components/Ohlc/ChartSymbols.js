@@ -21,33 +21,33 @@ export default function ChartSymbols({
       "3. low": low,
       "4. close": close
     } = data[formattedDate];
-    const lineColor = close > open ? "green" : "red";
-    const lineStart = (maxValue - parseFloat(low).toFixed(1)) * ratio;
-    const lineEnd = (maxValue - parseFloat(high).toFixed(1)) * ratio;
-    const openStart = (maxValue - parseFloat(open).toFixed(1)) * ratio;
-    const closeStart = (maxValue - parseFloat(close).toFixed(1)) * ratio;
+    const color = close > open ? "green" : "red";
+    const lowPosition = (maxValue - parseFloat(low).toFixed(1)) * ratio;
+    const highPosition = (maxValue - parseFloat(high).toFixed(1)) * ratio;
+    const openPosition = (maxValue - parseFloat(open).toFixed(1)) * ratio;
+    const closePosition = (maxValue - parseFloat(close).toFixed(1)) * ratio;
     return (
       <g key={formattedDate}>
         <line
-          stroke={lineColor}
+          stroke={color}
           x1={xScale}
           x2={xScale}
-          y1={lineEnd}
-          y2={lineStart}
+          y1={highPosition}
+          y2={lowPosition}
         />
         <line
-          stroke={lineColor}
+          stroke={color}
           x1={xScale}
           x2={xScale + 5}
-          y1={openStart}
-          y2={openStart}
+          y1={openPosition}
+          y2={openPosition}
         />
         <line
-          stroke={lineColor}
+          stroke={color}
           x1={xScale - 5}
           x2={xScale}
-          y1={closeStart}
-          y2={closeStart}
+          y1={closePosition}
+          y2={closePosition}
         />
       </g>
     );

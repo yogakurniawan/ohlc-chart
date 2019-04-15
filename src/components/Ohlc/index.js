@@ -1,5 +1,6 @@
 import React from "react";
 import compareAsc from "date-fns/compare_asc";
+import { CHART_HEIGHT, CHART_WIDTH } from "../../constants";
 import DateLine from "./DateLine";
 import YText from "./YText";
 import XYLine from "./XYLine";
@@ -10,7 +11,7 @@ export default function Ohlc({ data }) {
   const dates = Object.keys(data);
   const parsedDates = dates.map(date => new Date(date));
   const sortedDates = parsedDates.sort(compareAsc);
-  const xScaleUnit = 800 / dates.length;
+  const xScaleUnit = CHART_WIDTH / dates.length;
   const { maxValue, minValue } = dates.reduce(
     (accumulator, currentValue, i) => {
       const { "2. high": high, "3. low": low } = data[currentValue];
@@ -25,7 +26,11 @@ export default function Ohlc({ data }) {
   );
   return (
     <Container>
-      <svg width="100%" height="60vh" viewBox="0 0 800 400">
+      <svg
+        width="100%"
+        height="60vh"
+        viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
+      >
         <XYLine />
         <ChartSymbols
           dates={sortedDates}
